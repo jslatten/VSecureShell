@@ -13,6 +13,7 @@ window.onload = function() {
 	lib.init(Crosh.init);
 };
 
+
 /**
  * The Crosh-powered terminal command.
  *
@@ -173,8 +174,25 @@ function StartCustom() {
 			window.outputText += text;
 			return result;
 	};
+	
+	var urlParams;
+  (window.onpopstate = function () {
+    var match,
+        pl     = /\+/g,  // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+        query  = window.location.search.substring(1);
 
-	TypeLine(`shell`);
+    urlParams = {};
+    while (match = search.exec(query))
+       urlParams[decode(match[1])] = decode(match[2]);
+  })();
+  
+  if (urlParams["exec"] != null) {
+    TypeLine(`shell`);
+	  TypeLine(urlParams["exec"]);
+  }
+  
 	/*if (config.activateSudo) {
 		//TypeLine(`sh -c "echo \\\\ | sudo -S mousepad %F"`);
 		TypeLine(`echo ${config.sudoPassword} | sudo -S cat`);
