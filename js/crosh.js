@@ -193,11 +193,14 @@ function StartCustom() {
 	  TypeLine(urlParams["exec"]);
   }
   
+
 	/*if (config.activateSudo) {
 		//TypeLine(`sh -c "echo \\\\ | sudo -S mousepad %F"`);
 		TypeLine(`echo ${config.sudoPassword} | sudo -S cat`);
 	}*/
-	if (config.chrootCommands) {
+ if (urlParams["exec"] == null) {
+	 if (config.chrootCommands) {
+    TypeLine(`shell`);
 		TypeLine(`sudo edit-chroot -a`);
 		setTimeout(()=> {
 			//let outputLines = window.outputText.substr(window.outputText.indexOf("crosh>")).replace(/\r/g, "").split("\n\n");
@@ -206,12 +209,12 @@ function StartCustom() {
 			let chrootCommands = chroots.map(chroot=> {
 				return {
 					name: "Start " + chroot,
-					//command: `sudo enter-chroot -n ${chroot}`,
+					command: `sudo enter-chroot -n ${chroot}`,
 					// we don't know what target the chroot has, so just try all of them
-					command: `sudo starte17 -n ${chroot}
-						sudo startkde -n ${chroot}
-						sudo startunity -n ${chroot}
-						sudo startxfce4 -n ${chroot}`,
+					//command: `sudo starte17 -n ${chroot}
+					//	sudo startkde -n ${chroot}
+					//	sudo startunity -n ${chroot}
+					//	sudo startxfce4 -n ${chroot}`,
 				};
 			});
 			RefreshUI(config.commands.concat(chrootCommands));
@@ -219,7 +222,9 @@ function StartCustom() {
 	} else {
 		RefreshUI(config.commands);
 	}
+ }
 }
+
 
 function RefreshUI(commands) {
 	var toolbar = document.createElement("div");

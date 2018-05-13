@@ -32,18 +32,19 @@ This will execute the shell command in the crosh terminal first. Next it will en
 
 Additional Configuration:
 
-You can enable the toolbar to enable options for additional chroots. Prior to loading the extension, edit UserConfig.js, and modify as shown below:
+Toolbar to enable options for running top as well as additional chroots. Additional commands can be added to the toolbar by adding
+
+{name: "Button Title", command: "command_to_run"}
+
+Default configuration:
 
 let chromebookID = 0;
-let activate_toolbar = false; /* Set to true to Enable Toolbar */
 
 window.config = {
     /*activateSudo: true,
     sudoPassword: "\\",*/
-    chrootCommands: true, /* Enables selection of other chroot environments */
-    if (activate_toolbar == true) {
-      commands: [
-        {name: "Open Chroot", command: "sudo enter-chroot"},
-      ],
-    };
+    chrootCommands: true,
+    commands: [
+      {name: "Top", command: "top"}, {name: "Free Memory", command: "free -m"}
+    ],
 };
