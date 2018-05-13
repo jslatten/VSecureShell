@@ -1,13 +1,13 @@
 let chromebookID = 0;
-let activate_toolbar = false;
+let activate_toolbar = true;
 
 window.config = {
     /*activateSudo: true,
     sudoPassword: "\\",*/
-    chrootCommands: false,
+    chrootCommands: true,
     if (activate_toolbar == true) {
       commands: [
-        {name: "Start Terminal", command: "sudo enter-chroot xiwi terminator"},
+        {name: "Open Chroot", command: "sudo enter-chroot"},
       ],
     };
 };

@@ -29,3 +29,21 @@ To execute a shell command automatically use the following syntax:
 chrome-extension://pnhechapfaindjhompbnflcldabbghjo/html/crosh.html?exec=sudo enter-chroot xiwi gnome-terminal
 
 This will execute the shell command in the crosh terminal first. Next it will enter your crouton chroot, and then execute gnome-terminal which will open in a xiwi window.
+
+Additional Configuration:
+
+You can enable the toolbar to enable options for additional chroots. Prior to loading the extension, edit UserConfig.js, and modify as shown below:
+
+let chromebookID = 0;
+let activate_toolbar = false; /* Set to true to Enable Toolbar */
+
+window.config = {
+    /*activateSudo: true,
+    sudoPassword: "\\",*/
+    chrootCommands: true, /* Enables selection of other chroot environments */
+    if (activate_toolbar == true) {
+      commands: [
+        {name: "Open Chroot", command: "sudo enter-chroot"},
+      ],
+    };
+};
