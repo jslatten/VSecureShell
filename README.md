@@ -32,9 +32,9 @@ This will execute the shell command in the crosh terminal first. Next it will en
 
 Additional Configuration:
 
-Toolbar to enable options for running top as well as additional chroots. Additional commands can be added to the toolbar by adding
+Toolbar to enable options for running top as well as additional chroots. Additional commands can be added to the toolbar by adding the following format in the commands section:
 
-{name: "Button Title", command: "command_to_run"}
+{name: "Button Title", command: "command_to_run"},
 
 Default configuration:
 
@@ -45,6 +45,6 @@ window.config = {
     sudoPassword: "\\",*/
     chrootCommands: true,
     commands: [
-      {name: "Top", command: "top"}, {name: "Free Memory", command: "free -m"}
+      {name: "Top", command: "top"}, {name: "Free Memory", command: "free -m"},
     ],
 };
